@@ -18,20 +18,8 @@ This outline is currently a work-in-progress.
 ### Debugging (see below)
 
 ## Server Setup
-### Installation
-- raspberry pi notes?
-### Node-red configuration
-- flows installation
-- link to firmware directory
-- SOH monitoring setup
-### Influx DB Configuration
-### Grafana Configuration
-- Dashboard Configuration
-- Sensor Aliases (see names above)
-- Dewpoint Example
-### Firewall Configuration
-- Node-red
-- Grafana
+* [Server Setup and Configuration](server_setup.md)
+
 ### Debugging (see below)
 
 ## Sensor Calibration
@@ -58,10 +46,10 @@ This outline is currently a work-in-progress.
 - corosion
 - battery contacts
 - wifi credentials lost
-- wireless AP (see node-red monitoring above)
+- wireless AP (see Node-RED monitoring below)
 
 ## Server Debugging
-### Node-red Monitoring
+### Node-RED Monitoring
 ### Common Problems
 - firewall
 - DNS

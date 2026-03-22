@@ -33,7 +33,7 @@
   * [kicad/](../kicad/) - KiCad projects
     * [EPD_1in9/](../kicad/EPD_1in9/) - KiCad project for the E-Paper Display Board
       * [EPD_1in9_schematic.pdf](../kicad/EPD_1in9/EPD_1in9_schematic.pdf) - PDF version of the schematic
-  * [node-red/](../node-red/) - Node-Red flows and helper scripts
+  * [node-red/](../node-red/) - Node-RED flows and helper scripts
   * [openscad/](../openscad/) - OpenSCAD projects
     * [EPD_1in9.scad](../openscad/EPD_1in9.scad) - 3D Model for the Waveshare 1.9" E-Paper Display
 

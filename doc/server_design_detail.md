@@ -260,7 +260,7 @@ flows are started).
 This function performs a console.log of the string "@SOH report@" + the
 timestamp.
 
-### Node-red SOH Monitor
+### Node-RED SOH Monitor
 
 The SOH Monitor script is located in
 [soh-monitor.sh](../node-red/soh-monitor.sh).

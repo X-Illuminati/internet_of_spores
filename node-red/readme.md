@@ -19,7 +19,7 @@ will also work.
 * [node-red-contrib-md5 v1.0.4](https://flows.nodered.org/node/node-red-contrib-md5)
 * [node-red-contrib-influxdb v0.4.0](https://flows.nodered.org/node/node-red-contrib-influxdb)
 
-# Node-Red systemd unit file
+# Node-RED systemd unit file
 The node-red.service is a systemd unit file that can be used to create a
 systemd service to start and run the flows. It is compatible with being run as
 a systemd user-service if installed in ~/.local/share/systemd/user/.

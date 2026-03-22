@@ -18,7 +18,7 @@ Specifically targeting Lolin D1 Mini.
 
 ## Documentation (work-in-progress)
 * [Developer Documentation](doc/README.md)
-* [User Guide](doc/user_guide.md)
+* [User Guide](doc/user_guide/README.md)
 
 ## Toolchain Setup and Library Dependencies
 
