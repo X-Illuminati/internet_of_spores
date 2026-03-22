@@ -8,8 +8,8 @@
   - [Influx DB Installation](#influx-db-installation)
   - [Node-RED Installation](#node-red-installation)
 * [Configuration](#configuration)
-  - [Node-RED Configuration](#node-red-configuration)
   - [Influx DB Configuration](#influx-db-configuration)
+  - [Node-RED Configuration](#node-red-configuration)
   - [Grafana Configuration](#grafana-configuration)
   - [Firewall Configuration](#firewall-configuration)
 
@@ -255,7 +255,7 @@ Specific instructions for the Raspberry Pi exist at
 https://nodered.org/docs/getting-started/raspberrypi.
 
 > ⚠️ Attention:  
-> bash <(curl ...) and variants are considered insecure. It is recommended to
+> `bash <(curl ...)` and variants are considered insecure. It is recommended to
 > peruse [the source](https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
 > and execute it directly if you are satisfied.  
 > The author of this documentation takes no responsibility for your security
@@ -667,12 +667,12 @@ Once you select "Time series as the visualization type, you will be able to
 configure the panel title and other graphical configurations on the right side.
 The query parameters can all be changed by clicking on them and Grafana will
 provide a list of valid settings based on the content it finds in the InfluxDB
-data source.__
-You can use the "ALIAS" field to give your graph a more meaningful name.__
+data source.  
+You can use the "ALIAS" field to give your graph a more meaningful name.  
 ![Screenshot: Add Visualization](../screenshots/grafana_add_query_temperature.png)  
 Don't forget to click "Save dashboard" to save your changes!
 
-**More Advanced Example**__
+**More Advanced Example**  
 You can use raw query mode to see and edit the exact SELECT statement that will
 be sent to InfluxDB. This can be used to implement more advanced queries.
 
