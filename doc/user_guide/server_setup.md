@@ -12,6 +12,9 @@
   - [Node-RED Configuration](#node-red-configuration)
   - [Grafana Configuration](#grafana-configuration)
   - [Firewall Configuration](#firewall-configuration)
+* [Data Management](#data-management)
+  - [Influx DB Backup](#influx-db-backup)
+  - [Influx DB Restore](#influx-db-restore)
 
 ---
 
@@ -703,3 +706,53 @@ the list of ports:
 | 1880        | Node-RED  | Provide flow programming UI via http
 | 2880        | Node-RED  | The provided flows.json will liston on this port for incoming connections from the sensors
 | 8086        | Influx DB | (Optional) Access to Influx DB REST API
+
+## Data Management
+
+### Influx DB Backup
+Influx DB stores its data in `/var/lib/influxdb`. However, simply zipping a
+snapshot of the data and attempting to load it in a new instance of Influx DB
+will, generally, not be successful.
+
+The easiest approach to backing-up the Influx data is using the built-in backup
+command and performing a full-database backup.  
+https://docs.influxdata.com/influxdb/v1/administration/backup_and_restore/
+provides an overview of the commands and options.
+
+To perform a full database backup:
+```bash
+# backup data to a directory named 'influxdatabackup'
+influxd backup -portable influxdatabackup
+#>2026/10/10 17:19:29 backing up metastore to influxdatabackup/meta.00
+#>2026/10/10 17:19:29 No database, retention policy or shard ID given. Full meta store backed up.
+#>2026/10/10 17:19:29 Backing up all databases in portable format
+#>2026/10/10 17:19:29 backing up db=
+#>2026/10/10 17:19:29 backing up db=_internal rp=monitor shard=10978 to influxdatabackup/_internal.monitor.10978.00 since 0001-01-01T00:00:00Z
+#>2026/10/10 17:19:30 backing up db=_internal rp=monitor shard=10980 to influxdatabackup/_internal.monitor.10980.00 since 0001-01-01T00:00:00Z
+#>...
+
+# you may find it useful to further collect these into a single .tar archive
+# --remove-files will cause the original influxdatabackup directory to be
+# deleted
+tar --remove-files -cf influxdatabackup.tar influxdatabackup
+```
+
+### Influx DB Restore
+Restoring the full database backup is almost as easy:
+```bash
+# extract the archive if needed
+tar -xf influxdatabackup.tar
+
+influxd restore -portable influxdata-backup
+#>2026/10/10 17:03:14 Restoring shard 6288 live from backup 20261010T205159Z.s6288.tar.gz
+#>2026/10/10 17:03:14 Restoring shard 6348 live from backup 20261010T205159Z.s6348.tar.gz
+#>...
+```
+
+> 🪧 Note:  
+> Influx can't restore data if the database already exists.
+> The easiest work-around for full database backups is simply to delete the
+> existing database.  
+> To do, this you can run `drop datebase home` from the influxdb shell.  
+> Or, see [the documentation](https://docs.influxdata.com/influxdb/v1/administration/backup_and_restore/#restore-data-to-an-existing-database)
+> for alternative approaches.
