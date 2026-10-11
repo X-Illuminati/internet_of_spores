@@ -383,6 +383,8 @@ mean (average) and sampled versions of all data fields for 10 minute windows:
 
 The reader is encouraged to review the contents of
 `/etc/influxdb/influxdb.conf` and make any adjustments as desired.
+In particular, you may want to adjust the `[logging]` level from `"info"` to
+'"warn"`.
 
 ### Node-RED Configuration
 If you didn't already run the initialization script for node-red, you can run
@@ -546,6 +548,13 @@ sudoedit /etc/grafana/grafana.ini
 #< [Search for the auth.anonymous section and add/modify the following lines]
 #< enabled = true
 #< org_role = Admin
+
+# While you are editing this file, you may want to configure the logging to
+# reduce the amount of log spam appearing in the system journal.
+#< [Search for [Log] section]
+#< mode = syslog
+#< level = warn
+
 #< [Save and quit the editor]
 ```
 
@@ -737,6 +746,11 @@ influxd backup -portable influxdatabackup
 tar --remove-files -cf influxdatabackup.tar influxdatabackup
 ```
 
+> 🪧 Note:  
+> Continuous queries as described in [Influx DB Configuration](#influx-db-configuration)
+> don't seem to be backed up with the database metadata here. They will need to
+> be recreated manually when you restore.
+
 ### Influx DB Restore
 Restoring the full database backup is almost as easy:
 ```bash
@@ -756,3 +770,6 @@ influxd restore -portable influxdata-backup
 > To do, this you can run `drop datebase home` from the influxdb shell.  
 > Or, see [the documentation](https://docs.influxdata.com/influxdb/v1/administration/backup_and_restore/#restore-data-to-an-existing-database)
 > for alternative approaches.
+
+After restoring the backup, you will need to recreate any continuous queries as
+described in [Influx DB Configuration](#influx-db-configuration).
